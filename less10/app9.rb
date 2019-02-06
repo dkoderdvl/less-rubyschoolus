@@ -1,6 +1,8 @@
 # Урок 10
 # Камень - ножницы - бумага
 # rock - scissors - paper
+# лучше использовать computer_choice и user_choice
+
 
 def get_random_value
   
@@ -16,39 +18,71 @@ puts "Hi #{user_name}. Let's game [r]ock - [s]cissors - [p]aper or e[x]it"
 loop  do
   
   print "Enter you variant: "
-  vars = gets.strip.upcase
+  user_choice_s = gets.strip.upcase
   
-  if vars == "ROCK" || vars == "R"
+  if user_choice_s == "ROCK" || user_choice_s == "R"
     
-    var = :rock
+    user_choice = :rock
     
-  elsif vars == "SCISSORS" || vars == "S"
+  elsif user_choice_s == "SCISSORS" || user_choice_s == "S"
     
-    var = :scissors
+    user_choice = :scissors
     
-  elsif vars == "PAPER" || vars == "P"
+  elsif user_choice_s == "PAPER" || user_choice_s == "P"
     
-    var = :paper
+    user_choice = :paper
     
-  elsif vars == "EXIT" || vars == "X"
+  elsif user_choice_s == "EXIT" || user_choice_s == "X"
     
     exit
     
+  else
+    
+    next
+    
   end
   
-  valrnd = get_random_value
+  computer_choice = get_random_value
   
-  puts "#{user_name} - #{var} || computer - #{valrnd}"
+  puts "#{user_name} - #{user_choice} || computer - #{computer_choice}"
   
-  if var == :rock && valrnd == :scissors || var == :scissors && valrnd == :paper || var == :paper && valrnd == :rock
+  matrix_user_win = [
+    [:rock, :scissors],
+    [:scissors, :paper],
+    [:paper,:rock],
+  ]
+  
+  if matrix_user_win.include?([user_choice, computer_choice])
     
     puts "#{user_name} - you are win"
+    
+  elsif user_choice == computer_choice
+    
+    puts "#{user_name} = computer. DRAW"
     
   else
     
     puts "compute is win"
     
   end
+
+
+
+
+  
+  #~ if var == :rock && valrnd == :scissors || var == :scissors && valrnd == :paper || var == :paper && valrnd == :rock
+    
+    #~ puts "#{user_name} - you are win"
+    
+  #~ elsif var == valrnd
+    
+    #~ puts "#{user_name} = computer. DRAW"
+    
+  #~ else
+    
+    #~ puts "compute is win"
+    
+  #~ end
     
   #~ puts var.object_id
   #~ puts :rock.object_id
