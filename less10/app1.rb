@@ -8,6 +8,7 @@ def get_command
   
   #@arr_actions[rand(0..3)]
   [:left, :right, :up, :down][rand(0..3)]
+  
 end
 
 #@arr_actions = [:left, :right, :up, :down]

@@ -27,3 +27,9 @@ command = get_command
   
 end
 
+puts :wwww.class
+puts :wwww.methods
+puts :wwww.to_s
+#puts :2 # Ошибка
+
+
