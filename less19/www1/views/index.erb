@@ -1,0 +1,17 @@
+<h1>Hi</h1>
+
+<p>You typed: <%= @lgn_s %>
+
+<form action="/" method="POST">
+  
+  <p><input type="text" name="lgn"/></p>
+  <p><input type="password" name="pswrd"/></p>
+  <p><input type="submit"/></p>
+  
+   
+  <% if !( @lgn_s == 'admin' && @pswrd_s == 'secret' ) -%>
+    <p>access denid</p>
+  <% end -%> 
+  
+  
+</form>
