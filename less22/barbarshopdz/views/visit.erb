@@ -1,16 +1,27 @@
-<h2>Visit</h2>
+<h2>Visit:</h2>
+<% if @is_message -%>
+  <%= "<p>#{@message}</p>" %>
+<% end -%>
 <form action="/visit" method="POST">
   <div class="form-group">
-    <label for="exampleInputEmail1">Name</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Name" name="user_name">
+    <label>Name</label>
+    <input type="text" class="form-control" placeholder="Name" name="client_name">
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Phone</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="+7 (***) ***-**-**" name="user_phone">
+    <label>Phone</label>
+    <input type="text" class="form-control" placeholder="+7 (***) ***-**-**" name="client_phone">
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Date - time</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Date - Time" name="date_time">
+    <label">Date - time</label>
+    <input type="text" class="form-control" placeholder="Date - Time" name="date_time">
+  </div>
+  <div class="form-group">
+    <label>Stylist</label>
+    <select type="text" name="stylist" class="form-control" id="exampleFormControlSelect1">
+      <% @hh[ :stylists ].each do |k,v| %>
+        <%= "<option>Name: #{v[ :stylist_name ]}, phone: #{v[ :stylist_phone ]}</option>" %>
+      <% end %>
+    </select>
   </div>
   <button type="submit" class="btn btn-primary">Visit</button>
 </form>
