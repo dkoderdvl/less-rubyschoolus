@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row"> 
+    <div class="col-sm">
+      <br/>
+      <p>List visit:</p>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">date - time</th>
+            <th scope="col">Stylist</th>
+            <th scope="col">Stylist phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @hh[ :date_time ].each do |v| %>
+            <%= '<tr>' %>
+              <%= "<td>#{v[ :client_name ]}</td>" %>
+              <%= "<td>#{v[ :client_phone ]}</td>" %>
+              <%= "<td>#{v[ :date_time ]}</td>" %>
+              <%= "<td>#{v[ :stylist_name ]}</td>" %>
+              <%= "<td>#{v[ :stylist_phone ]}</td>" %>
+            <%= '</tr>' %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm">
+      add stylists:
+      <% if @is_message -%>
+        <%= "<p>#{@message}</p>" %>
+      <% end -%>
+      <form action="/admin" method="POST">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Name stylist</label>
+          <input type="text" class="form-control" placeholder="Name" name="stylist_name">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Phone stylist</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="+7 (***) ***-**-**" name="stylist_phone">
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+      <p>List stylists:</p>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @hh[ :stylists ].each do |k,v| %>
+            <%= '<tr>' %>
+              <%= "<td>#{v[ :stylist_name ]}</td>" %>
+              <%= "<td>#{v[ :stylist_phone ]}</td>" %>
+            <%= '</tr>' %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
