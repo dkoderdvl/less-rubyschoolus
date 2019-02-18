@@ -1,0 +1,61 @@
+<h2>Visit:</h2>
+<%if @message && @message.length > 0 then %>
+    <p><%=@message%></p>
+<% end %>
+<form action="/visit" method="POST">
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" class="form-control ccc" placeholder="Name" name="client_name" value="<%=@client_name%>">
+  </div>
+  <div class="form-group">
+    <label>Phone</label>
+    <input type="text" class="form-control ccc" placeholder="+7 (***) ***-**-**" name="client_phone"  value="<%=@client_phone%>">
+  </div>
+  <div class="form-group">
+    <label id="aaa">Date - time</label>
+    <input type="text" class="form-control ccc" placeholder="Date - Time" name="date_time"  value="<%=@date_time%>">
+  </div>
+  <div class="form-group">
+    <label>Stylist</label>
+    <select name="stylist" class="form-control" id="exampleFormControlSelect1">
+      <% @hh[ :stylists ].each do |k,v| %>
+        <%= "<option>Name: #{v[ :stylist_name ]}, phone: #{v[ :stylist_phone ]}</option>" %>
+      <% end %>
+    </select>
+  </div>
+
+<script type="text/javascript">
+  $(function(){
+   $('#colorp').simplecolorpicker();
+  })
+</script>
+
+  <div class="form-group">
+    <label>color:</label>
+    <select name="colorpicker" id="colorp">
+      <option value="#7bd148">Green</option>
+      <option value="#5484ed">Bold blue</option>
+      <option value="#a4bdfc">Blue</option>
+      <option value="#46d6db">Turquoise</option>
+      <option value="#7ae7bf">Light green</option>
+      <option value="#51b749">Bold green</option>
+      <option value="#fbd75b">Yellow</option>
+      <option value="#ffb878">Orange</option>
+      <option value="#ff887c">Red</option>
+      <option value="#dc2127">Bold red</option>
+      <option value="#dbadff">Purple</option>
+      <option value="#e1e1e1">Gray</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Visit</button>
+</form>
+
+
+
+<script type="text/javascript">
+  $('#aaa').css('background-color', '#DAFBEB');
+  $('.ccc').css('background-color', '#E6E6FA');
+</script>
+
+
