@@ -93,7 +93,7 @@ def add_stylist hh_stylist
 	unless is_stylist_by_phone? hh_stylist[ :stylist_phone ]
 		db = SQLite3::Database.new 'barbarshop.sqlite'
 		db.results_as_hash = true
-		db.execute "INSERT INTO stylists (name, phone) VALUES('#{hh_stylist[ :stylist_name ]}','#{hh_stylist[ :stylist_phone ]}')"
+		db.execute "INSERT INTO stylists (name, phone) VALUES(?,?)", [hh_stylist[ :stylist_name ],hh_stylist[ :stylist_phone ]]
 		db.close
 
 		return true
@@ -117,7 +117,7 @@ def add_client hh_client
 	db.results_as_hash = true
 
 	if db.execute("SELECT id FROM clients WHERE phone = '#{hh_client[ :client_phone ]}'").size == 0
-		db.execute "INSERT INTO clients (name, phone) VALUES('#{hh_client[ :client_name ]}','#{hh_client[ :client_phone ]}')"
+		db.execute "INSERT INTO clients (name, phone) VALUES(?,?)", [ hh_client[ :client_name ], hh_client[ :client_phone ] ]
 	end	
 
 	client_id = db.execute("SELECT id FROM clients WHERE phone = '#{hh_client[ :client_phone ]}'")[0]['id']
@@ -130,7 +130,7 @@ end
 def add_date_time hh_date_time
 	db = SQLite3::Database.new 'barbarshop.sqlite'
 	db.results_as_hash = true
-	db.execute "INSERT INTO visits (id_client, id_stylist, date_time, colorpicker) VALUES('#{hh_date_time[ :client_id ]}','#{hh_date_time[ :stylist_id ]}','#{hh_date_time[ :date_time ]}','#{hh_date_time[ :colorpicker ]}')"
+	db.execute "INSERT INTO visits (id_client, id_stylist, date_time, colorpicker) VALUES(?,?,?,?)", [ hh_date_time[ :client_id ], hh_date_time[ :stylist_id ], hh_date_time[ :date_time ], hh_date_time[ :colorpicker ] ]
 	db.close
 end
 
